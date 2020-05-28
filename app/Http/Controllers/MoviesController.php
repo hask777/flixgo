@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class MoviesController extends Controller
 {
@@ -13,7 +17,13 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        return view('index');
+       include 'movies/popular.php';
+
+        // dump($popularMovies);
+
+        return view('index', [
+            'popularMovies' => $popularMovies
+        ]);
     }
 
     /**
